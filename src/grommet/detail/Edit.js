@@ -92,7 +92,9 @@ export class Edit extends Component {
             isLoading,
             resource,
             title,
-            translate
+            translate,
+            version,
+            history,
         } = this.props;
 
         if (!children) 
@@ -129,8 +131,8 @@ export class Edit extends Component {
                 <Header size="large" justify="between" pad="none">
                     <Heading tag="h2" margin="none" strong={true}>
                         {titleElement}
-                    </Heading>
-                    <Anchor icon={< CloseIcon />} path={`${basePath}/${id}/show`} a11yTitle='Close Form'/>
+                    </Heading>                    
+                    <Anchor icon={< CloseIcon />} onClick={() => history.goBack()} a11yTitle='Close Form'/>
                 </Header>
                 {data && React.cloneElement(children, {
                     save: this.save,
@@ -138,6 +140,7 @@ export class Edit extends Component {
                     basePath,
                     record: data,
                     translate,
+                    version,
                     redirect: typeof children.props.redirect === 'undefined'
                         ? this.defaultRedirectRoute()
                         : children.props.redirect

@@ -56,6 +56,7 @@ class GrommetMenu extends Component {
             .filter(r => r.list)
             .map(resource => (
                 <Anchor
+                    icon={< resource.icon />}
                     key={resource.name}
                     path={`/${resource.name}`}
                     label={translatedResourceName(resource, translate)}

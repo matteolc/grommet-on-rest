@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {parse, stringify} from 'query-string';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
+import {createSelector} from 'reselect';
 import inflection from 'inflection';
 import Title from '../layout/Title';
 import { crudCreate as crudCreateAction } from '../../actions/dataActions';
@@ -59,7 +61,10 @@ class Create extends Component {
             translate,
             hasList,
             history,
+            defaultRecord,
         } = this.props;
+
+        console.log(this.props)
 
         if (!children) return null;
         const basePath = this.getBasePath();
@@ -98,7 +103,7 @@ class Create extends Component {
                 save: this.save,
                 resource,
                 basePath,
-                record: {},
+                record: {...defaultRecord},
                 translate,
                 redirect:
                     typeof children.props.redirect === 'undefined'
@@ -127,8 +132,14 @@ Create.defaultProps = {
     data: {},
 };
 
-function mapStateToProps(state) {
+const getLocationSearch = props => props.location.search;
+const getDefaultRecord = createSelector(getLocationSearch, locationSearch => {
+    return parse(locationSearch);
+});
+
+function mapStateToProps(state, props) {
     return {
+        defaultRecord: getDefaultRecord(props),
         isLoading: state.admin.loading > 0,
     };
 }

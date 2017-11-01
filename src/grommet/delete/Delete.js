@@ -11,19 +11,19 @@ import translate from '../../i18n/translate';
 
 class Delete extends Component {
 
-    componentDidMount() {
-        this
-            .props
-            .crudGetOne(this.props.resource, this.props.id, this.getBasePath());
-    }
+    //componentDidMount() {
+    //    this
+    //        .props
+    //        .crudGetOne(this.props.resource, this.props.id, this.getBasePath());
+    //}
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.id !== nextProps.id) {
-            this
-                .props
-                .crudGetOne(nextProps.resource, nextProps.id, this.getBasePath());
-        }
-    }
+    //componentWillReceiveProps(nextProps) {
+    //    if (this.props.id !== nextProps.id) {
+    //        this
+    //            .props
+    //            .crudGetOne(nextProps.resource, nextProps.id, this.getBasePath());
+    //    }
+    //}
 
     getBasePath() {
         const {location} = this.props;
@@ -35,7 +35,7 @@ class Delete extends Component {
     }
 
     handleSubmit = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         this
             .props
             .crudDelete(this.props.resource, this.props.id, this.props.data, this.getBasePath());

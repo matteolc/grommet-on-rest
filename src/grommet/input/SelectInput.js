@@ -101,9 +101,9 @@ export class SelectInput extends Component {
     addAllowEmpty = choices => {
         if (this.props.allowEmpty) {
             const emptyChoice = {
-                value: undefined,
+                value: "",
                 sub: "",
-                label: ""
+                label: "all"
             }
             return [
                 ...emptyChoice,
@@ -130,7 +130,7 @@ export class SelectInput extends Component {
             {
                 value: get(choice, optionValue),
                 sub: get(choice, optionValue),
-                label: <Box direction='row' justify='between'><span>{get(choice, optionValue)}</span><span className='secondary'>{choiceName}</span></Box>,
+                label: choiceName,
             }      
         );
     };
@@ -171,7 +171,7 @@ export class SelectInput extends Component {
                 id={source}
                 onSearch={this.onSearch}
                 onChange={this.handleChange}
-                value={this.state.option.value}
+                value={this.state.option}
                 style={elStyle}
                 placeHolder={allowEmpty ? 'None' : 'Select..'}
                 options={selectOptions}

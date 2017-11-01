@@ -86,6 +86,8 @@ export class Show extends Component {
             translate,
             sidebarResponsive,
             responsive,
+            version,
+            location,
         } = this.props;
 
         if (!children) 
@@ -113,7 +115,7 @@ export class Show extends Component {
                 ? 'right'
                 : 'left'}
                 onResponsive={sidebarResponsive}>
-                <div>
+                <div key={version}>
                     <Header
                         pad={{
                         horizontal: "small",
@@ -152,7 +154,9 @@ export class Show extends Component {
                             resource,
                             basePath,
                             record: data,
-                            translate
+                            translate,
+                            version,
+                            location,
                         })}
                     </Article>
                 </div>
